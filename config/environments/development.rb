@@ -77,4 +77,7 @@ Rails.application.configure do
   
   config.active_job.queue_adapter = :inline
     # 画像サイズに関するエラー回避
+    
+  config.web_console.whitelisted_ips = '106.154.160.204'
+  # Cannot render console from 106.154.160.204!の解決
 end
