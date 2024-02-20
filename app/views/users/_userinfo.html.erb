@@ -1,0 +1,11 @@
+<div>
+  <h1>User info</h1>
+  <p><%= image_tag user.get_profile_image(100,100) %></p>
+  <div>
+    <div>name</div>
+    <div><%= user.name %></div>
+    <div>introduction</div>
+    <div> <%= user.introduction %></div>
+  </div>
+  <div><%= link_to user_edit_path %>fontawsome</div>
+</div>
