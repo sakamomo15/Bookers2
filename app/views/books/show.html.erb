@@ -13,5 +13,5 @@
 
 <% if @book_detail.user == current_user %>
   <%= link_to "Edit", edit_book_path(@book_detail.id) %>
-  <%= link_to "Destroy", book_path(@book_detail), method: :delete %><!--book_path(@book_detail.id)では？？-->
+  <%= link_to "Destroy", book_path(@book_detail), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_detail.id)では？？-->
 <% end %>
