@@ -2,4 +2,23 @@
 
 <%= render 'books/newbook', book: @book %>
 
-<h1>Users(index)</h1>
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  
+  <% @users.each do |user| %>
+  <tbody>
+    <tr>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
+      <td><%= user.name %></td>
+      <td><%= link_to "Show", user_path(user.id) %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
