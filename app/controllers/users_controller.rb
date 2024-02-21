@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
+    @books = @user.books #@userに関連あるbook全て(アソシエーションされたモデル同士の記述方法)
   end
 
   def edit

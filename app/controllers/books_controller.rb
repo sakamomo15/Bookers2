@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
-    book.user_id = current_user.id
+    book.user_id = current_user.id #bookのtableに必要なuser_idは入力してもらわないので、ここで定義
     book.save
     redirect_to book_path(book)
   end
@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @book = Book.new
     @book_detail = Book.find(params[:id])
   end

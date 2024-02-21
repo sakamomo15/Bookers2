@@ -5,13 +5,14 @@
 <h1>Book detail</h1>
 
 <div>
-  <%= image_tag @user.get_profile_image %>
+  <%= image_tag @user.get_profile_image(100,100) %>
   <%= link_to "#{@user.name}", user_path(@user.id) %>
 </div>
 <%= link_to "#{@book_detail.title}", book_path(@book_detail.id) %>
 <%= @book_detail.opinion %>
 
 <% if @book_detail.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book_detail.id) %>
-  <%= link_to "Destroy", book_path(@book_detail), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_detail.id)では？？-->
+  <%= link_to "Edit", edit_book_path(@book_detail) %> <!--(@book_detail.id)では？-->
+  <%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_detail.id)では？？-->
+    <!--URLに対して削除-->
 <% end %>

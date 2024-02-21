@@ -2,23 +2,4 @@
 
 <%= render 'newbook', book: @book %>
 
-<h1>Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  
-  <% @books.each do |book| %>
-  <tbody>
-    <tr>
-      <td><%= image_tag book.user.get_profile_image %></td>
-      <td><%= link_to "#{book.title}", book_path %></td>
-      <td><%= book.opinion %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+<%= render 'booksindex', books: @books%>
