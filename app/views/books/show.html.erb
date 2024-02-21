@@ -7,26 +7,50 @@
   </ul>
 <% end %>
 
-<%= render 'users/userinfo', user: @user %>
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-3">
+      <%= render 'users/userinfo', user: @user %>
+      <%= render 'newbook', book: @book %>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+                <%= image_tag @user.get_profile_image(100,100) %><br>
+                <%= @user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "#{@book_data.title}", book_path(@book_data.id) %>
+            </td>
+            <td>
+              <%= @book_data.opinion %>
+            </td>
+            
+            <% if @book_data.user == current_user %>
+            <td>
+              <%= link_to "Edit", edit_book_path(@book_data), class: "btn btn-sm btn-success"; %> <!--(@book_data.id)では？-->
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path(@book_data.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger"; %><!--book_path(@book_data.id)では？？-->
+                <!--URLに対して削除-->
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      
 
-<%= render 'newbook', book: @book %>
 
-<h1>Book detail</h1>
-
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= link_to "#{@user.name}", user_path(@user.id) %>
+    </div>
+    
+  </div>
 </div>
 
-<div><%= link_to "#{@book_data.title}", book_path(@book_data.id) %></div>
-<div><%= @book_data.opinion %></div>
 
-<% if @book_data.user == current_user %>
-  <div>
-    <%= link_to "Edit", edit_book_path(@book_data) %> <!--(@book_data.id)では？-->
-  </div>
-  <div>
-    <%= link_to "Destroy", book_path(@book_data.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_data.id)では？？-->
-    <!--URLに対して削除-->
-  </div>
-<% end %>
