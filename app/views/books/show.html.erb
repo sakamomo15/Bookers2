@@ -1,5 +1,7 @@
 <% if @book_data.errors.any? %>
-  <%= @book_data.errors.count %>error prohibited this obj from being saved:
+  <h3>
+    <%= @book_data.errors.count %>error prohibited this obj from being saved:
+  </h3>
   <ul>
     <% @book_data.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -9,12 +11,12 @@
 
 <div class="container">
   <div class="row">
-    
+
     <div class="col-md-3">
       <%= render 'users/userinfo', user: @user %>
       <%= render 'newbook', book: @book %>
     </div>
-    
+
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
@@ -30,9 +32,9 @@
               <%= link_to "#{@book_data.title}", book_path(@book_data.id) %>
             </td>
             <td>
-              <%= @book_data.opinion %>
+              <%= @book_data.body %>
             </td>
-            
+
             <% if @book_data.user == current_user %>
             <td>
               <%= link_to "Edit", edit_book_path(@book_data), class: "btn btn-sm btn-success"; %> <!--(@book_data.id)では？-->
@@ -45,11 +47,11 @@
           </tr>
         </tbody>
       </table>
-      
+
 
 
     </div>
-    
+
   </div>
 </div>
 
