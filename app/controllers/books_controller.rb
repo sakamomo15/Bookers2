@@ -2,16 +2,26 @@ class BooksController < ApplicationController
 
 
   def create
-    book = Book.new(book_params)
-    book.user_id = current_user.id #bookのtableに必要なuser_idは入力してもらわないので、ここで定義
-    book.save
-    redirect_to book_path(book)
+    @user = current_user
+    @book = Book.new
+    @books = Book.all
+    
+    @book_data = Book.new(book_params)
+    @book_data.user_id = current_user.id #bookのtableに必要なuser_idは入力してもらわないので、ここで定義
+    
+    if @book_data.save
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(@book_data.id)
+    else
+      render :index
+    end
   end
 
   def index
     @user = current_user
     @book = Book.new
     @books = Book.all
+    @book_data = Book.new(book_params)
   end
 
   def show
@@ -25,9 +35,16 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+    @user = User.find(current_user.id)
+    @book = Book.new
+    
+    @book_detail = Book.find(params[:id])
+    if @book_detail.update(book_params)
+      flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(@book_detail.id)
+    else
+      render :show
+    end
   end
 
   def destroy
