@@ -1,7 +1,7 @@
-<% if @book_detail.errors.any? %>
-  <%= @book_detail.errors.count %>error prohibited this obj from being saved:
+<% if @book_data.errors.any? %>
+  <%= @book_data.errors.count %>error prohibited this obj from being saved:
   <ul>
-    <% @book_detail.errors.full_messages.each do |message| %>
+    <% @book_data.errors.full_messages.each do |message| %>
     <li><%= message %></li>
     <% end %>
   </ul>
@@ -11,17 +11,17 @@
 
 <%= render 'newbook', book: @book %>
 
-<h1>Book detail</h1>
+<h1>Book data</h1>
 
 <div>
   <%= image_tag @user.get_profile_image(100,100) %>
   <%= link_to "#{@user.name}", user_path(@user.id) %>
 </div>
-<%= link_to "#{@book_detail.title}", book_path(@book_detail.id) %>
-<%= @book_detail.opinion %>
+<%= link_to "#{@book_data.title}", book_path(@book_data.id) %>
+<%= @book_data.opinion %>
 
-<% if @book_detail.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book_detail) %> <!--(@book_detail.id)では？-->
-  <%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_detail.id)では？？-->
+<% if @book_data.user == current_user %>
+  <%= link_to "Edit", edit_book_path(@book_data) %> <!--(@book_data.id)では？-->
+  <%= link_to "Destroy", book_path(@book_data.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_data.id)では？？-->
     <!--URLに対して削除-->
 <% end %>
