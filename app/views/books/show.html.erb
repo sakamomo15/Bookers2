@@ -11,17 +11,22 @@
 
 <%= render 'newbook', book: @book %>
 
-<h1>Book data</h1>
+<h1>Book detail</h1>
 
 <div>
   <%= image_tag @user.get_profile_image(100,100) %>
   <%= link_to "#{@user.name}", user_path(@user.id) %>
 </div>
-<%= link_to "#{@book_data.title}", book_path(@book_data.id) %>
-<%= @book_data.opinion %>
+
+<div><%= link_to "#{@book_data.title}", book_path(@book_data.id) %></div>
+<div><%= @book_data.opinion %></div>
 
 <% if @book_data.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book_data) %> <!--(@book_data.id)では？-->
-  <%= link_to "Destroy", book_path(@book_data.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_data.id)では？？-->
+  <div>
+    <%= link_to "Edit", edit_book_path(@book_data) %> <!--(@book_data.id)では？-->
+  </div>
+  <div>
+    <%= link_to "Destroy", book_path(@book_data.id), method: :delete, "data-confirm" => "本当に消しますか？" %><!--book_path(@book_data.id)では？？-->
     <!--URLに対して削除-->
+  </div>
 <% end %>
