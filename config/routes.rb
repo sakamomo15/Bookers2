@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_scope :user do
   delete 'users/sign_out', to: 'devise/sessions#destroy', as: :logout
   end
-   #サインアウトでエラーが出たので
+   #サインアウトでエラーが出たので追加
 
   root to: 'homes#top'
-  get 'home/about',to: 'homes#about', as: 'about'
+  get 'home/about', to: 'homes#about', as: 'about'
   
   resources :users, only: [:index, :show, :edit, :update]
   resources :books, only: [:index, :show, :create, :edit, :update, :destroy] #newは不要
